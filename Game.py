@@ -80,14 +80,14 @@ class Game:
                 if event.button == 1:
                     self.actions['mouse_sx'] = 1
                     self.actions['shift'] = 1
-                if event.button == 2:
+                if event.button == 3:
                     self.actions['mouse_dx'] = 1
 
             if event.type == p.MOUSEBUTTONUP:
                 if event.button == 1:
                     self.actions['mouse_sx'] = 0
                     self.actions['shift'] = 0
-                if event.button == 2:
+                if event.button == 3:
                     self.actions['mouse_dx'] = 0
 
             if self.need_key_event_handling:
