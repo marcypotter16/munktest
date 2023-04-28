@@ -162,7 +162,7 @@ class Game:
         self.sprite_dir = os.path.join(self.assets_dir, "sprites")
         self.font_dir = os.path.join(self.assets_dir, "font")
         # self.font = p.font.Font(os.path.join(self.font_dir, "PressStart2P-vaV7.ttf"), 20)
-        self.font = p.font.SysFont("Roboto", 20, bold=True)
+        self.font = p.font.SysFont("Roboto", 15, bold=True)
 
 
     def reset_keys(self):
