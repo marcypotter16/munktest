@@ -1,16 +1,18 @@
 import pygame.draw
 from pygame import Surface
 
-from UI.Abstract import UIElement, UICanvas
-from UI.Button import TextButton
-from UI.Label import Label
+from munktest.UI.Abstract import UIElement, UICanvas
+from munktest.UI.Button import TextButton
+from munktest.UI.Label import Label
 
 
 class Slider(UIElement):
     def __init__(self, parent: UICanvas = None, x=0, y=0, center=None, width=100, height=100,
                  bg_color: tuple | str = (40, 40, 40), fg_color=(0, 0, 0), text: str = "", corner_radius=10,
-                 start: float = 0, end: float = 100, default: float = 0):
+                 start: float = 0, end: float = 100, default: float = None):
         super().__init__(parent, x, y, center, width, height, bg_color, fg_color, text, corner_radius)
+        if default is None:
+            default = start
         self.start, self.end, self.value = start, end, default
         initial_x_offset = round((default - start) / (end - start) * width)
         self.slider_button = TextButton(parent=self, center=(self.x + initial_x_offset, self.y + .5 * self.height), text='|',
@@ -24,7 +26,7 @@ class Slider(UIElement):
                 self.slider_button.x = self.x if self.game.mousepos[0] <= self.x else min(self.game.mousepos[0], self.x + self.width)
                 half_btn_width = round(.5*self.slider_button.width)
                 self.slider_button.x -= half_btn_width
-                self.value = self.start + float(self.slider_button.x + half_btn_width - self.x)/self.width * self.end
+                self.value = self.start + float(self.slider_button.x + half_btn_width - self.x)/self.width * (self.end - self.start)
                 self.slider_button.rect.x = self.slider_button.x
                 self.value_label.text = str(round(self.value))
 
